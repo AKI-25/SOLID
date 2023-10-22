@@ -1,0 +1,47 @@
+@startuml
+
+
+    class Car {
+        - _id: String
+        - _model: String
+        - _brand: String
+        + Car(id: String, model: String, brand: String)
+        + getId(): String
+        + getModel(): String
+        + getBrand(): String
+    }
+    
+    class CarComparator {
+        - _carsDb: CarDatabase
+        + CarComparator(cardb: CarDatabase)
+        + getBestCar(): Car
+    }
+    
+    class CarDatabase {
+        - _carsDb: List<Car>
+        + getFromDb(carId: String): Car
+        + getCars(): List<Car>
+    }
+    
+    class CarLister {
+        - _carsDb: CarDatabase
+        + CarLister(cardb: CarDatabase)
+        + getCarNames(): String
+    }
+    
+    class CarManager {
+        - _carsLs: CarLister
+        - _carscmp: CarComparator
+        + CarManager(carls: CarLister, carcmp: CarComparator)
+        + getCarsNames(): String
+        + getBestCar(): Car
+    }
+
+
+CarDatabase --> Car : Uses
+CarComparator --> CarDatabase : Uses
+CarLister --> CarDatabase : Uses
+CarManager --> CarLister : Uses
+CarManager --> CarComparator : Uses
+
+@enduml
