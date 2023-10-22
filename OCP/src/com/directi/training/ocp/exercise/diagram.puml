@@ -1,0 +1,34 @@
+@startuml Resource
+
+'the abstract class resourcetype will have the abstract methods that we
+'created in order to be able to implement time and space later while 
+'respecting OCP
+
+abstract class Resourcetype {
+    {abstract} findFreeSlot()
+    {abstract} markSlotBusy(int ResourceID)
+    {abstract} markSlotFree(int ResourceID)
+}
+
+'the secondd class will have two methods that we will implement for
+'any type of resource we need to create
+
+class ResourceAllocator
+{
+    int allocate(Resourcetype:Resourcetype)
+    void free(resourcetype:Resourcetype,resourceId:int)
+}
+
+'space is a type of resource, so it will extend resourcetype
+class SpaceResource extends Resourcetype{
+}
+
+'the same goes for time
+class TimeResource extends Resourcetype{
+}
+
+'resrource allocator uses resourcetype 
+ResourceAllocator -- Resourcetype
+
+
+@enduml
