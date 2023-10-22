@@ -6,7 +6,8 @@ public class EncodingModuleClient
 {
     public static void main(String[] args) throws IOException
     {
-        EncodingModule encodingModule = new EncodingModule();
+        DatabaseInterface db = new MyDatabase();
+        EncodingModule encodingModule = new EncodingModule(db);
         encodingModule.encodeWithFiles();
         encodingModule.encodeBasedOnNetworkAndDatabase();
     }
